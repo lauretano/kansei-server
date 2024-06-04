@@ -1,11 +1,12 @@
-# uCore <!-- omit in toc -->
+# Kansei Server <!-- omit in toc -->
 
 [![stable](https://github.com/ublue-os/ucore/actions/workflows/build-stable.yml/badge.svg)](https://github.com/ublue-os/ucore/actions/workflows/build-stable.yml)
 [![testing](https://github.com/ublue-os/ucore/actions/workflows/build-testing.yml/badge.svg)](https://github.com/ublue-os/ucore/actions/workflows/build-testing.yml)
 
-uCore is an OCI image of [Fedora CoreOS](https://getfedora.org/coreos/) with "batteries included". More specifically, it's an opinionated, custom CoreOS image, built daily with some common tools added in. The idea is to make a lightweight server image including commonly used services or the building blocks to host them.
+Kansei Server, a fork of uCore, is an opinionated, custom OCI image of Fedora CoreOS, built off the Universal Blue uCore base daily. The idea is to make a lightweight server image that is a bit more container platform agnostic.
 
-Please take a look at the included modifications, and help us improve uCore if the project interests you.
+## Important Note
+At this time, this is a super pre-alpha state and only a couple images are being built specific to test hardware platforms in use currently. See the current packages list for up to date image availabilitty.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -42,14 +43,14 @@ Please take a look at the included modifications, and help us improve uCore if t
 
 ## Features
 
-The uCore project builds four images, each with different tags for different features.
+The Kansei Server project builds a few images:
 
 The image names are:
 
 - [`fedora-coreos`](#fedora-coreos)
 - [`ucore-minimal`](#ucore-minimal)
 - [`ucore`](#ucore)
-- [`ucore-hci`](#ucore-hci)
+<!-- - [`ucore-hci`](#ucore-hci) -->
 
 The [tag matrix](#tag-matrix) includes combinations of the following:
 
@@ -57,6 +58,7 @@ The [tag matrix](#tag-matrix) includes combinations of the following:
 - `testing` - for an image based on the Fedora CoreOS testing stream
 - `nvidia` - for an image which includes nvidia driver and container runtime
 - `zfs` - for an image which includes zfs driver and tools
+- `dockerce` - for an image which removes the Fedora CoreOS moby-engine and containerd, replacing it with docker-ce
 
 ### Images
 
