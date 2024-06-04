@@ -3,7 +3,7 @@ on:
   pull_request:
   merge_group:
   schedule:
-    - cron: '00 0 * * *' # 11:45PM UTC everyday (approx 1.5 hours after coreos images publish)
+    - cron: '00 0 * * 0' # 11:45PM UTC Sunday (approx 1.5 hours after coreos images publish)
   workflow_dispatch:
 
 jobs:
