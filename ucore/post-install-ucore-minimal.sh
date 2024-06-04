@@ -20,7 +20,7 @@ fi
 ## ALWAYS: regular post-install
 if [[ "-dockerce" != "${DOCKERCE_TAG}" ]]; then
     systemctl disable docker.socket
-
+fi
 systemctl disable zincati.service
 
 systemctl enable ucore-paths-provision.service

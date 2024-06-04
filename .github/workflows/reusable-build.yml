@@ -254,7 +254,7 @@ jobs:
       packages: write
       id-token: write
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         image_suffix:
           - "-minimal"
@@ -280,9 +280,7 @@ jobs:
           - image_suffix: "-hci"
             description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
         exclude:
-          - image_suffix: 
-              - "-hci"
-              - "-minimal"
+          - image_suffix: "-hci"
           - nvidia_tag: ""
           - zfs_tag: ""
           - dockerce_tag: ""
