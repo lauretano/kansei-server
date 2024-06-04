@@ -5,6 +5,7 @@
             "ucore-minimal": [
                 "bootc",
                 "cockpit-networkmanager",
+                "cockpit-ostree",
                 "cockpit-podman",
                 "cockpit-selinux",
                 "cockpit-system",
