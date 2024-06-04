@@ -9,13 +9,11 @@
                 "cockpit-selinux",
                 "cockpit-system",
                 "firewalld",
-                "open-vm-tools",
                 "podman",
                 "podman-compose",
-                "qemu-guest-agent",
                 "tailscale",
                 "tmux",
-                "wireguard-tools"
+                "vim"
             ],
             "ucore": [
                 "NetworkManager-wifi",
