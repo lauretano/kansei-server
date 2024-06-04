@@ -266,6 +266,9 @@ jobs:
         zfs_tag:
           - "-zfs"
           - ""
+        dockerce_tag:
+          - "-dockerce"
+          - ""
         include:
           - image_base: ucore
           - image_version: ${{ needs.stream_info.outputs.version }}
@@ -276,7 +279,13 @@ jobs:
             description: An OCI image of Fedora CoreOS with a few extra tools, hardware support, and storage utilities
           - image_suffix: "-hci"
             description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
-
+        exclude:
+          - image_suffix: 
+              - "-hci"
+              - "-minimal"
+          - nvidia_tag: ""
+          - zfs_tag: ""
+          - dockerce_tag: ""
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
