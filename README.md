@@ -1,8 +1,7 @@
 # Kansei Server <!-- omit in toc -->
 
-[![stable](https://github.com/ublue-os/ucore/actions/workflows/build-stable.yml/badge.svg)](https://github.com/ublue-os/ucore/actions/workflows/build-stable.yml)
-[![testing](https://github.com/ublue-os/ucore/actions/workflows/build-testing.yml/badge.svg)](https://github.com/ublue-os/ucore/actions/workflows/build-testing.yml)
-
+[![stable](https://github.com/lauretano/kansei-server/actions/workflows/build-stable.yml/badge.svg)](https://github.com/lauretano/kansei-server/actions/workflows/build-stable.yml)
+[![testing](https://github.com/lauretano/kansei-server/actions/workflows/build-testing.yml/badge.svg)](https://github.com/lauretano/kansei-server/actions/workflows/build-testing.yml)
 Kansei Server, a fork of uCore, is an opinionated, custom OCI image of Fedora CoreOS, built off the Universal Blue uCore base daily. The idea is to make a lightweight server image that is a bit more container platform agnostic.
 
 ## Important Note
