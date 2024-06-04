@@ -84,13 +84,18 @@ jobs:
         zfs_tag:
           - "-zfs"
           - ""
+        dockerce_tag:
+          - "-dockerce"
+          - ""
         include:
           - image_name: fedora-coreos
           - image_version: ${{ needs.stream_info.outputs.version }}
           - pr_prefix: ${{ needs.workflow_info.outputs.pr_prefix }}
         exclude:
           - nvidia_tag: ""
-            zfs_tag: ""
+          - zfs_tag: ""
+          - dockerce_tag: ""
+
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
@@ -110,7 +115,7 @@ jobs:
         run: |
           # Generate a timestamp for creating an image version history
           TIMESTAMP="$(date +%Y%m%d)"
-          COREOS_VERSION="${{ inputs.coreos_version }}${{ matrix.nvidia_tag }}${{ matrix.zfs_tag }}"
+          COREOS_VERSION="${{ inputs.coreos_version }}${{ matrix.dockerce_tag }}${{ matrix.nvidia_tag }}${{ matrix.zfs_tag }}"
 
           COMMIT_TAGS=()
           BUILD_TAGS=()
@@ -178,6 +183,7 @@ jobs:
           build-args: |
             COREOS_VERSION=${{ inputs.coreos_version }}
             PR_PREFIX=${{ matrix.pr_prefix }}
+            DOCKERCE_TAG=${{ matrix.dockerce_tag }}  
             NVIDIA_TAG=${{ matrix.nvidia_tag }}
             ZFS_TAG=${{ matrix.zfs_tag }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -290,7 +296,7 @@ jobs:
         run: |
           # Generate a timestamp for creating an image version history
           TIMESTAMP="$(date +%Y%m%d)"
-          COREOS_VERSION="${{ inputs.coreos_version }}${{ matrix.nvidia_tag }}${{ matrix.zfs_tag }}"
+          COREOS_VERSION="${{ inputs.coreos_version }}${{ matrix.dockerce_tag }}${{ matrix.nvidia_tag }}${{ matrix.zfs_tag }}"
 
           COMMIT_TAGS=()
           BUILD_TAGS=()
@@ -362,6 +368,7 @@ jobs:
           build-args: |
             COREOS_VERSION=${{ inputs.coreos_version }}
             PR_PREFIX=${{ matrix.pr_prefix }}
+            DOCKERCE_TAG=${{ matrix.dockerce_tag }}
             NVIDIA_TAG=${{ matrix.nvidia_tag }}
             ZFS_TAG=${{ matrix.zfs_tag }}
           labels: ${{ steps.meta.outputs.labels }}

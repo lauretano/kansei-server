@@ -50,6 +50,13 @@ if [[ "-nvidia" == "${NVIDIA_TAG}" ]]; then
         nvidia-container-toolkit
 fi
 
+## CONDITIONAL: install DOCKER-CE
+if [[ "-dockerce" == "${DOCKERCE_TAG}" ]]; then
+  curl --output-dir "/etc/yum.repos.d" --remote-name https://download.docker.com/linux/fedora/docker-ce.repo
+  rpm-ostree override remove moby-engine containerd runc --install docker-ce
+fi
+
+
 ## ALWAYS: install regular packages
 
 # add tailscale repo

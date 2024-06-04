@@ -7,6 +7,8 @@ ARG COREOS_VERSION="${COREOS_VERSION:-stable}"
 ARG NVIDIA_TAG="${NVIDIA_TAG}"
 # build with --build-arg ZFS_TAG="-zfs" to install zfs
 ARG ZFS_TAG="${ZFS_TAG}"
+# build with --build-arg DOCKERCE_TAG="-dockerce" to install docker-ce
+ARG DOCKERCE_TAG="${DOCKERCE_TAG}"
 ARG KMOD_SRC="${KMOD_SRC:-ghcr.io/ublue-os/ucore-kmods:${COREOS_VERSION}}"
 
 COPY --from=${KMOD_SRC} /rpms/kmods/*.rpm /tmp/rpms/

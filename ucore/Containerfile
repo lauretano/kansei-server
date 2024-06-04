@@ -9,8 +9,9 @@ ARG COREOS_VERSION="${COREOS_VERSION:-stable}"
 ARG NVIDIA_TAG="${NVIDIA_TAG}"
 # build with --build-arg ZFS_TAG="-zfs" to install zfs
 ARG ZFS_TAG="${ZFS_TAG}"
+# build with --build-arg DOCKERCE_TAG="-dockerce" to install docker-ce
+ARG DOCKERCE_TAG="${DOCKERCE_TAG}"
 ARG KMOD_SRC="${KMOD_SRC:-ghcr.io/ublue-os/ucore-kmods:${COREOS_VERSION}}"
-
 # 0.12.1 matches docker/moby 24.0.5 which FCOS ships as of 40.20240421
 ARG DOCKER_BUILDX_VERSION=0.12.1
 # 2.24.7 matches docker/moby 24.0.5  which FCOS ships as of 40.20240421
@@ -52,6 +53,7 @@ FROM ucore-minimal AS ucore
 
 ARG COREOS_VERSION="${COREOS_VERSION:-stable}"
 ARG ZFS_TAG="${ZFS_TAG}"
+ARG DOCKERCE_TAG="${DOCKERCE_TAG}"
 
 COPY *.sh /tmp/
 COPY packages.json /tmp/packages.json
@@ -74,6 +76,7 @@ FROM ucore AS ucore-hci
 ARG COREOS_VERSION="${COREOS_VERSION:-stable}"
 ARG NVIDIA_TAG="${NVIDIA_TAG}"
 ARG ZFS_TAG="${ZFS_TAG}"
+ARG DOCKERCE_TAG="${DOCKERCE_TAG}"
 
 COPY *.sh /tmp/
 COPY packages.json /tmp/packages.json

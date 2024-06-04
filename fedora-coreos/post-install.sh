@@ -13,3 +13,8 @@ if [[ "-nvidia" == "${NVIDIA_TAG}" ]]; then
 
     semodule --verbose --install /usr/share/selinux/packages/nvidia-container.pp
 fi
+
+## CONDITIONAL: post-install DOCKER-CE
+if [[ "-dockerce" == "${DOCKERCE_TAG}" ]]; then
+    echo "no post-install tasks for DOCKER-CE"
+fi
