@@ -257,9 +257,9 @@ jobs:
       fail-fast: true
       matrix:
         image_suffix:
-          - "-minimal"
+          #- "-minimal"
           - ""
-          - "-hci"
+          #- "-hci"
         nvidia_tag:
           - "-nvidia"
           - ""
@@ -280,7 +280,6 @@ jobs:
           - image_suffix: "-hci"
             description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
         exclude:
-          - nvidia_tag: ""
           - zfs_tag: ""
           - dockerce_tag: ""
     steps:
