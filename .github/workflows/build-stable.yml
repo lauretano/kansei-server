@@ -3,7 +3,11 @@ on:
   pull_request:
   merge_group:
   schedule:
-    - cron: '00 0 * * 0' # 11:45PM UTC Sunday (approx 1.5 hours after coreos images publish)
+    - cron: '30 4 * * 2' 
+    # 4:30AM UTC Tuesday, such that use during the week and testing through the weekend
+    # results in a good stable build ready for review on "patch tuesday" and implementation
+    # during regular weekly maintenance windows aka daddy systemd reboot at midnight plsthx
+  
   workflow_dispatch:
 
 jobs:
