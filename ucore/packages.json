@@ -41,7 +41,8 @@
                 "tiwilink-firmware",
                 "usbutils",
                 "xdg-dbus-proxy",
-                "xdg-user-dirs"
+                "xdg-user-dirs",
+                "apcupsd"
             ],
             "ucore-hci": [
                 "cockpit-machines",
