@@ -69,7 +69,7 @@ jobs:
   build_fcos:
     name: fedora-coreos
     runs-on: ubuntu-22.04
-    if: always() && !cancelled()
+    if: !always() #&& !cancelled()
     needs: [workflow_info, stream_info]
     permissions:
       contents: read
@@ -92,7 +92,7 @@ jobs:
           - image_version: ${{ needs.stream_info.outputs.version }}
           - pr_prefix: ${{ needs.workflow_info.outputs.pr_prefix }}
         exclude:
-          - nvidia_tag: ""
+          - nvidia_tag: "-nvidia"
           - zfs_tag: ""
           - dockerce_tag: ""
 
@@ -273,14 +273,17 @@ jobs:
           - image_base: ucore
           - image_version: ${{ needs.stream_info.outputs.version }}
           - pr_prefix: ${{ needs.workflow_info.outputs.pr_prefix }}
-          #- image_suffix: "-minimal"
-          #  description: An OCI image of Fedora CoreOS with a few extra tools and suitable for running in a VM
+          - image_suffix: "-minimal"
+            description: An OCI image of Fedora CoreOS with a few extra tools and suitable for running in a VM
           - image_suffix: ""
             description: An OCI image of Fedora CoreOS with a few extra tools, hardware support, and storage utilities
-          #- image_suffix: "-hci"
-          #  description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
+          - image_suffix: "-hci"
+            description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
         exclude:
+          - image_suffix: "-hci"
+          - image_suffix: "minimal"
           - zfs_tag: ""
+          - nvidia_tag: "-nvidia"
           - dockerce_tag: ""
     steps:
       # Checkout push-to-registry action GitHub repository
