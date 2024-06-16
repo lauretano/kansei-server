@@ -69,7 +69,7 @@ jobs:
   build_fcos:
     name: fedora-coreos
     runs-on: ubuntu-22.04
-    if: !always() #&& !cancelled()
+    if: ${{ false }} #always() && !cancelled()
     needs: [workflow_info, stream_info]
     permissions:
       contents: read
