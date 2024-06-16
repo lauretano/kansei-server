@@ -14,7 +14,10 @@
                 "podman-compose",
                 "tailscale",
                 "tmux",
-                "vim"
+                "vim",
+                "apcupsd",
+                "cockpit-pcp",
+                "cockpit-storaged"
             ],
             "ucore": [
                 "NetworkManager-wifi",
