@@ -2,7 +2,7 @@
     "all": {
         "include": {
             "all": [],
-            "ucore-minimal": [
+            "kansei-server": [
                 "bootc",
                 "cockpit-networkmanager",
                 "cockpit-ostree",
@@ -19,7 +19,7 @@
                 "cockpit-pcp",
                 "cockpit-storaged"
             ],
-            "ucore": [
+            "kansei-server-plus": [
                 "NetworkManager-wifi",
                 "atheros-firmware",
                 "brcmfmac-firmware",
@@ -45,22 +45,19 @@
                 "usbutils",
                 "xdg-dbus-proxy",
                 "xdg-user-dirs",
-                "apcupsd"
-            ],
-            "ucore-hci": [
                 "cockpit-machines",
                 "libvirt-client",
                 "libvirt-daemon-kvm",
-                "virt-install"
+                "virt-install",
+                "apcupsd"
             ]
         },
         "exclude": {
             "all": [],
-            "ucore-minimal": [],
-            "ucore": [
+            "kansei-server": [],
+            "kansei-server-plus": [
                 "nfs-utils-coreos"
-            ],
-            "ucore-hci": []
+            ]
         }
     }
 }

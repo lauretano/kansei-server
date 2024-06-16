@@ -6,7 +6,7 @@ set -ouex pipefail
 curl -L https://raw.githubusercontent.com/coreos/fedora-coreos-config/testing-devel/fedora-coreos-pool.repo -o /etc/yum.repos.d/fedora-coreos-pool.repo
 
 # install packages.json stuffs
-export IMAGE_NAME=ucore-hci
+export IMAGE_NAME=kansei-server-plus
 /tmp/packages.sh
 
 # remove coreos pool repo
