@@ -258,8 +258,8 @@ jobs:
       matrix:
         image_suffix:
           - "-minimal"
-          - ""
-          - "-hci"
+          #- ""
+          #- "-hci"
         nvidia_tag:
           - "-nvidia"
           - ""
@@ -275,13 +275,11 @@ jobs:
           - pr_prefix: ${{ needs.workflow_info.outputs.pr_prefix }}
           - image_suffix: "-minimal"
             description: An OCI image of Fedora CoreOS with a few extra tools and suitable for running in a VM
-          - image_suffix: ""
-            description: An OCI image of Fedora CoreOS with a few extra tools, hardware support, and storage utilities
-          - image_suffix: "-hci"
-            description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
+          #- image_suffix: ""
+          #  description: An OCI image of Fedora CoreOS with a few extra tools, hardware support, and storage utilities
+          #- image_suffix: "-hci"
+          #  description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
         exclude:
-          - image_suffix: "-hci"
-          - image_suffix: ""
           - zfs_tag: ""
           - nvidia_tag: "-nvidia"
           - dockerce_tag: ""
