@@ -9,6 +9,7 @@
                 "cockpit-podman",
                 "cockpit-system",
                 "firewalld",
+                "pciutils",
                 "podman",
                 "podman-compose",
                 "tailscale",
