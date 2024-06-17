@@ -54,7 +54,9 @@
         },
         "exclude": {
             "all": [],
-            "kansei-server": [],
+            "kansei-server": [
+                "cockpit-selinux"
+            ],
             "kansei-server-plus": [
                 "nfs-utils-coreos"
             ]
