@@ -259,7 +259,7 @@ jobs:
         image_suffix:
           - "-plus"
           - ""
-          #- "-hci"
+          #- "jinba-ittai"
         nvidia_tag:
           - "-nvidia"
           - ""
@@ -277,11 +277,10 @@ jobs:
             description: a lightly opinionated OCI image of Fedora CoreOS with many extra tools including virtualization, containers, zfs, nfs, samba, etc.
           - image_suffix: ""
             description: a lightly opinionated OCI image of Fedora CoreOS with a few extra tools, and available docker ce, zfs, nvidia
-          #- image_suffix: "-hci"
-          #  description: A hyper-converged infrastructure OCI image of Fedora CoreOS (storage + hypervisor)
+          #- image_suffix: "-jinba-ittai"
+          #  description: ~~ h o r s e and r i d e r as o n e ~~ this is my personal spin, likely a weird mix of packages
         exclude:
           - zfs_tag: ""
-          - nvidia_tag: "-nvidia"
           - dockerce_tag: ""
     steps:
       # Checkout push-to-registry action GitHub repository
