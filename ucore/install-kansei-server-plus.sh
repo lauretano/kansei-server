@@ -2,6 +2,11 @@
 
 set -ouex pipefail
 
+RELEASE="$(rpm -E %fedora)"
+
+# install packages direct from github
+/tmp/github-release-install.sh trapexit/mergerfs fc${RELEASE}.x86_64
+
 # add the coreos pool repo for package versions which can't be found elswehere
 curl -L https://raw.githubusercontent.com/coreos/fedora-coreos-config/testing-devel/fedora-coreos-pool.repo -o /etc/yum.repos.d/fedora-coreos-pool.repo
 
