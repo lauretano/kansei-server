@@ -50,7 +50,8 @@
                 "libvirt-client",
                 "libvirt-daemon-kvm",
                 "virt-install",
-                "apcupsd"
+                "apcupsd",
+                "lm_sensors"
             ]
         },
         "exclude": {
