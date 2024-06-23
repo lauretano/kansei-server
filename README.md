@@ -1,21 +1,19 @@
-# Kansei Server <!-- omit in toc -->
+# Kansei Server Pre-Alpha Danger Zone <!-- omit in toc -->
 
 [![stable](https://github.com/lauretano/kansei-server/actions/workflows/build-stable.yml/badge.svg)](https://github.com/lauretano/kansei-server/actions/workflows/build-stable.yml)
 [![testing](https://github.com/lauretano/kansei-server/actions/workflows/build-testing.yml/badge.svg)](https://github.com/lauretano/kansei-server/actions/workflows/build-testing.yml)
 
-Kansei Server, a fork of uCore, is an opinionated, custom OCI image of Fedora CoreOS, built off the Universal Blue uCore base daily. The idea is to make a lightweight server image that is a bit more container platform agnostic.
+Kansei Server, a fork of uCore, is an opinionated, custom OCI image of Fedora CoreOS, built off the Universal Blue uCore base daily. The idea is to make the "ideal" home hosting container server for nerds. 
 
 ## Important Note
-At this time, this is a super pre-alpha state and only a couple images are being built specific to test hardware platforms in use currently. See the current packages list for up to date image availabilitty.
+At this time, this is a super pre-alpha state and only a couple images are being built specific to test hardware platforms in use currently. More variants and some reorganization to come. 
 
 ## Table of Contents <!-- omit in toc -->
 
 - [Features](#features)
   - [Images](#images)
-    - [`fedora-coreos`](#fedora-coreos)
-    - [`ucore-minimal`](#ucore-minimal)
-    - [`ucore`](#ucore)
-    - [`ucore-hci`](#ucore-hci)
+    - [`kansei-server`](#kansei-server)
+    - [`kansei-server-plus`](#kansei-server-plus)
   - [Tag Matrix](#tag-matrix)
 - [Installation](#installation)
   - [Image Verification](#image-verification)
@@ -26,7 +24,7 @@ At this time, this is a super pre-alpha state and only a couple images are being
   - [Immutability and Podman](#immutability-and-podman)
   - [Default Services](#default-services)
   - [SELinux Troubleshooting](#selinux-troubleshooting)
-  - [Docker/Moby and Podman](#dockermoby-and-podman)
+  - [Docker-CE and Podman](#docker-and-podman)
   - [Podman and FirewallD](#podman-and-firewalld)
   - [Distrobox](#distrobox)
   - [NAS - Storage](#nas---storage)
@@ -47,14 +45,13 @@ The Kansei Server project builds a few images:
 
 The image names are:
 
-- [`fedora-coreos`](#fedora-coreos)
-- [`ucore-minimal`](#ucore-minimal)
-- [`ucore`](#ucore)
-<!-- - [`ucore-hci`](#ucore-hci) -->
+- [`kansei-server`](#kansei-server)
+- [`kansei-server-plus`](#kansei-server-plus)
+
 
 The [tag matrix](#tag-matrix) includes combinations of the following:
 
-- `stable` - for an image based on the Fedora CoreOS stable stream
+- `stable` - [disabled currently] for an image based on the Fedora CoreOS stable stream
 - `testing` - for an image based on the Fedora CoreOS testing stream
 - `nvidia` - for an image which includes nvidia driver and container runtime
 - `zfs` - for an image which includes zfs driver and tools
@@ -62,24 +59,7 @@ The [tag matrix](#tag-matrix) includes combinations of the following:
 
 ### Images
 
-#### `fedora-coreos`
-
-> [!IMPORTANT]
-> This was previously named `fedora-coreos-zfs`, but that version of the image did not offer the nvidia option. If on the previous image name, please rebase with `rpm-ostree rebase`.
-
-A generic [Fedora CoreOS image](https://quay.io/repository/fedora/fedora-coreos?tab=tags) image with choice of add-on kernel modules:
-
-- [nvidia versions](#tag-matrix) add:
-  - [nvidia driver](https://github.com/ublue-os/ucore-kmods) - latest driver built from negativo17's akmod package
-  - [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/sample-workload.html) - latest toolkit which supports both root and rootless podman containers and CDI
-  - [nvidia container selinux policy](https://github.com/NVIDIA/dgx-selinux/tree/master/src/nvidia-container-selinux) - allows using `--security-opt label=type:nvidia_container_t` for some jobs (some will still need `--security-opt label=disable` as suggested by nvidia)
-- [ZFS versions](#tag-matrix) add:
-  - [ZFS driver](https://github.com/ublue-os/ucore-kmods) - latest driver (currently pinned to 2.2.x series)
-
-> [!NOTE]
-> zincati fails to start on all systems with OCI based deployments (like uCore). Upstream efforts are active to develop an alternative.
-
-#### `ucore-minimal`
+#### `kansei-server`
 
 Suitable for running containerized workloads on either bare metal or virtual machines, this image tries to stay lightweight but functional.
 
@@ -109,11 +89,11 @@ Suitable for running containerized workloads on either bare metal or virtual mac
 > [!IMPORTANT]
 > Per [cockpit's instructions](https://cockpit-project.org/running.html#coreos) the cockpit-ws RPM is **not** installed, rather it is provided as a pre-defined systemd service which runs a podman container.
 
-#### `ucore`
+#### `kansei-server-plus`
 
-This image builds on `ucore-minimal` but adds drivers, storage tools and utilities making it more useful on bare metal or as a storage server (NAS).
+This image builds on `kansei-server` but adds drivers, storage tools and utilities making it more useful on bare metal or as a storage server (NAS).
 
-- Starts with a [`ucore-minimal`](#ucore-minimal) image providing everything above, plus:
+- Starts with a [`kansei-server`](#kansei-server) image providing everything above, plus:
 - Adds the following:
   - [cockpit-storaged](https://cockpit-project.org) (udisks2 based storage management)
   - [distrobox](https://github.com/89luca89/distrobox) - a [toolbox](https://containertoolbx.org/) alternative
@@ -125,16 +105,9 @@ This image builds on `ucore-minimal` but adds drivers, storage tools and utiliti
   - [rclone](https://www.rclone.org/) - file synchronization and mounting of cloud storage
   - [samba](https://www.samba.org/) and samba-usershares to provide SMB sevices
   - [snapraid](https://www.snapraid.it/)
-  - usbutils(and pciutils) - technically pciutils is pulled in by open-vm-tools in ucore-minimal
+  - usbutils(and pciutils) - technically pciutils is pulled in by open-vm-tools in kansei-server
 - Optional [ZFS versions](#tag-matrix) add:
   - [sanoid/syncoid dependencies](https://github.com/jimsalterjrs/sanoid) - [see below](#zfs) for details
-
-#### `ucore-hci`
-
-Hyper-Coverged Infrastructure(HCI) refers to storage and hypervisor in one place... This image primarily adds libvirt tools for virtualization.
-
-- Starts with a [`ucore`](#ucore) image providing everything above, plus:
-- Adds the following:
   - [cockpit-machines](https://github.com/cockpit-project/cockpit-machines): Cockpit GUI for managing virtual machines
   - [libvirt-client](https://libvirt.org/): `virsh` command-line utility for managing virtual machines
   - [libvirt-daemon-kvm](https://libvirt.org/): libvirt KVM hypervisor management
@@ -147,18 +120,14 @@ Hyper-Coverged Infrastructure(HCI) refers to storage and hypervisor in one place
 
 | IMAGE | TAG |
 |-|-|
-| [`fedora-coreos`](#fedora-coreos) - *stable* | `stable-nvidia`, `stable-zfs`,`stable-nvidia-zfs` |
-| [`fedora-coreos`](#fedora-coreos) - *testing* | `testing-nvidia`, `testing-zfs`, `testing-nvidia-zfs` |
-| [`ucore-minimal`](#ucore-minimal) - *stable* | `stable`, `stable-nvidia`, `stable-zfs`,`stable-nvidia-zfs` |
-| [`ucore-mimimal`](#ucore-minimal) - *testing* | `testing`, `testing-nvidia`, `testing-zfs`, `testing-nvidia-zfs` |
-| [`ucore`](#ucore) - *stable* | `stable`, `stable-nvidia`, `stable-zfs`,`stable-nvidia-zfs` |
-| [`ucore`](#ucore) - *testing* | `testing`, `testing-nvidia`, `testing-zfs`, `testing-nvidia-zfs` |
-| [`ucore-hci`](#ucore-hci) - *stable* | `stable`, `stable-nvidia`, `stable-zfs`,`stable-nvidia-zfs` |
-| [`ucore-hci`](#ucore-hci) - *testing* | `testing`, `testing-nvidia`, `testing-zfs`, `testing-nvidia-zfs` |
+| [`kansei-server`](#kansei-server) - *stable* | `stable`, `stable-nvidia`, `stable-zfs`,`stable-nvidia-zfs` |
+| [`kansei-server`](#kansei-server) - *testing* | `testing`, `testing-nvidia`, `testing-zfs`, `testing-nvidia-zfs` |
+| [`kansei-server-plus`](#kansei-server-plus) - *stable* | `stable`, `stable-nvidia`, `stable-zfs`,`stable-nvidia-zfs` |
+| [`kansei-server-plus`](#kansei-server-plus) - *testing* | `testing`, `testing-nvidia`, `testing-zfs`, `testing-nvidia-zfs` |
 
 ## Installation
 
-**Please read the [CoreOS installation guide](https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/)** before attempting installation. As uCore is an extension of CoreOS, it does not provide it's own custom or GUI installer.
+**Please read the [CoreOS installation guide](https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/)** before attempting installation. As Kansei Server is an extension of CoreOS, it does not provide it's own custom or GUI installer.
 
 There are varying methods of installation for bare metal, cloud providers, and virtualization platforms.
 
@@ -172,12 +141,12 @@ There are varying methods of installation for bare metal, cloud providers, and v
 These images are signed with sigstore's [cosign](https://docs.sigstore.dev/cosign/overview/). You can verify the signature by running the following command:
 
 ```bash
-cosign verify --key https://github.com/ublue-os/ucore/raw/main/cosign.pub ghcr.io/ublue-os/IMAGE:TAG
+cosign verify --key https://github.com/lauretano/kansei-server/raw/main/cosign.pub ghcr.io/lauretano/IMAGE:TAG
 ```
 
 ### Auto-Rebase Install
 
-One of the fastest paths to running uCore is using [examples/ucore-autorebase.butane](examples/ucore-autorebase.butane) as a template for your CoreOS butane file.
+One of the fastest paths to running Kansei Server is using [examples/ucore-autorebase.butane](examples/ucore-autorebase.butane) as a template for your CoreOS butane file.
 
 1. As usual, you'll need to [follow the docs to setup a password](https://coreos.github.io/butane/examples/#using-password-authentication). Substitute your password hash for `YOUR_GOOD_PASSWORD_HASH_HERE` in the `ucore-autorebase.butane` file, and add your ssh pub key while you are at it.
 1. Generate an ignition file from your new `ucore-autorebase.butane` [using the butane utility](https://coreos.github.io/butane/getting-started/).
@@ -185,28 +154,25 @@ One of the fastest paths to running uCore is using [examples/ucore-autorebase.bu
 
 ### Manual Install/Rebase
 
-Once a machine is running any Fedora CoreOS version, you can easily rebase to uCore.  Installing CoreOS itself can be done through [a number of provisioning methods](https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/).
+Once a machine is running any Fedora CoreOS version, you can easily rebase to Kansei Server.  Installing CoreOS itself can be done through [a number of provisioning methods](https://docs.fedoraproject.org/en-US/fedora-coreos/bare-metal/).
 
-To rebase an existing machine to the latest uCore:
+To rebase an existing machine to the latest Kansei Server:
 
 1. Execute the `rpm-ostree rebase` command (below) with desired `IMAGE` and `TAG`.
 1. Reboot, as instructed.
 1. After rebooting, you should [pin the working deployment](https://docs.fedoraproject.org/en-US/fedora-silverblue/faq/#_how_can_i_upgrade_my_system_to_the_next_major_version_for_instance_rawhide_or_an_upcoming_fedora_release_branch_while_keeping_my_current_deployment) which allows you to rollback if required.
 
 ```bash
-sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/IMAGE:TAG
+sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/lauretano/IMAGE:TAG
 ```
 
 #### Verified Image Updates <!-- omit in toc -->
 
-The `ucore*` images include container policies to support image verification for improved trust of upgrades. Once running one of the `ucore*` images, the following command will rebase to the verified image reference:
+The `kansei-server*` images include container policies to support image verification for improved trust of upgrades. Once running one of the `kansei-server*` images, the following command will rebase to the verified image reference:
 
 ```bash
-sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/ublue-os/IMAGE:TAG
+sudo rpm-ostree rebase ostree-image-signed:docker://ghcr.io/lauretano/IMAGE:TAG
 ```
-
-> [!NOTE]
-> This policy is not included with `fedora-coreos:*` as those images are kept very stock.*
 
 ## Tips and Tricks
 
@@ -224,7 +190,7 @@ Fedora CoreOS expects the user to run services using [podman](https://podman.io)
 
 To maintain this image's suitability as a minimal container host, most add-on services are not auto-enabled.
 
-To activate pre-installed services (`cockpit`, `docker`, `tailscaled`, etc):
+To activate pre-installed services (`cockpit`, `docker-ce`, `tailscaled`, etc):
 
 ```bash
 sudo systemctl enable --now SERVICENAME.service
@@ -258,7 +224,7 @@ Enforcing
 
 Fedora provides useful docs on [SELinux troubleshooting](https://docs.fedoraproject.org/en-US/quick-docs/selinux-troubleshooting/).
 
-### Docker/Moby and Podman
+### Docker and Podman
 
 > [!IMPORTANT]
 > CoreOS [cautions against](https://docs.fedoraproject.org/en-US/fedora-coreos/faq/#_can_i_run_containers_via_docker_and_podman_at_the_same_time) running podman and docker containers at the same time.  Thus, `docker.socket` is disabled by default to prevent accidental activation of the docker daemon, given podman is the default.
@@ -277,7 +243,7 @@ Users may use [distrobox](https://github.com/89luca89/distrobox) to run images o
 
 ### NAS - Storage
 
-`ucore` includes a few packages geared towards a storage server which will require individual research for configuration:
+`kansei-server-plus` includes a few packages geared towards a storage server which will require individual research for configuration:
 
 - [duperemove](https://github.com/markfasheh/duperemove)
 - [mergerfs](https://github.com/trapexit/mergerfs)
@@ -437,7 +403,7 @@ The included driver is the [latest nvidia driver](https://github.com/negativo17/
 
 If you need an older (or different) driver, consider looking at the [container-toolkit-fcos driver](https://hub.docker.com/r/fifofonix/driver/). It provides pre-bundled container images with nvidia drivers for FCOS, allowing auto-build/loading of the nvidia driver IN podman, at boot, via a systemd service.
 
-If going this path, you likely won't want to use the `ucore` `-nvidia` image, but would use the suggested systemd service. The nvidia container toolkit will still be required but can by layered easily.
+If going this path, you likely won't want to use the `kansei-server` `-nvidia` image, but would use the suggested systemd service. The nvidia container toolkit will still be required but can by layered easily.
 
 ### ZFS
 
@@ -478,8 +444,4 @@ If you do forget to specify the mountpoint, or you need to change the mountpoint
 
 sanoid/syncoid is a great tool for manual and automated snapshot/transfer of ZFS datasets. However, there is not a current stable RPM, rather they provide [instructions on installing via git](https://github.com/jimsalterjrs/sanoid/blob/master/INSTALL.md#centos).
 
-`ucore` has pre-install all the (lightweight) required dependencies (perl-Config-IniFiles perl-Data-Dumper perl-Capture-Tiny perl-Getopt-Long lzop mbuffer mhash pv), such that a user wishing to use sanoid/syncoid only need install the "sbin" files and create configuration/systemd units for it.
-
-## Metrics
-
-![Alt](https://repobeats.axiom.co/api/embed/07d1ed133f5ed1a1048ea6a76bfe3a23227eedd5.svg "Repobeats analytics image")
+`kansei-server-plus` has pre-install all the (lightweight) required dependencies (perl-Config-IniFiles perl-Data-Dumper perl-Capture-Tiny perl-Getopt-Long lzop mbuffer mhash pv), such that a user wishing to use sanoid/syncoid only need install the "sbin" files and create configuration/systemd units for it.

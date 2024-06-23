@@ -2,13 +2,14 @@
     "all": {
         "include": {
             "all": [],
-            "ucore-minimal": [
+            "kansei-server": [
                 "bootc",
                 "cockpit-networkmanager",
                 "cockpit-ostree",
                 "cockpit-podman",
                 "cockpit-system",
                 "firewalld",
+                "pciutils",
                 "podman",
                 "podman-compose",
                 "tailscale",
@@ -18,11 +19,12 @@
                 "cockpit-pcp",
                 "cockpit-storaged"
             ],
-            "ucore": [
+            "kansei-server-plus": [
                 "NetworkManager-wifi",
                 "atheros-firmware",
                 "brcmfmac-firmware",
                 "cockpit-pcp",
+                "cockpit-selinux",
                 "cockpit-storaged",
                 "distrobox",
                 "duperemove",
@@ -44,22 +46,22 @@
                 "usbutils",
                 "xdg-dbus-proxy",
                 "xdg-user-dirs",
-                "apcupsd"
-            ],
-            "ucore-hci": [
                 "cockpit-machines",
                 "libvirt-client",
                 "libvirt-daemon-kvm",
-                "virt-install"
+                "virt-install",
+                "apcupsd",
+                "lm_sensors"
             ]
         },
         "exclude": {
             "all": [],
-            "ucore-minimal": [],
-            "ucore": [
-                "nfs-utils-coreos"
+            "kansei-server": [
+                "cockpit-selinux"
             ],
-            "ucore-hci": []
+            "kansei-server-plus": [
+                "nfs-utils-coreos"
+            ]
         }
     }
 }

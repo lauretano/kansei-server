@@ -41,7 +41,7 @@ if [[ "-nvidia" == "${NVIDIA_TAG}" ]]; then
     # repo for nvidia rpms
     curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
 
-    curl -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo -o /etc/yum.repos.d/nvidia-container-toolkit.repo
+    curl -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo -o   /etc/yum.repos.d/nvidia-container-toolkit.repo
 
     rpm-ostree install /tmp/rpms/nvidia/ublue-os-ucore-nvidia-*.rpm
     sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/nvidia-container-toolkit.repo
@@ -66,8 +66,8 @@ fi
 curl -L https://pkgs.tailscale.com/stable/fedora/tailscale.repo -o /etc/yum.repos.d/tailscale.repo
 
 # install packages.json stuffs
-export IMAGE_NAME=ucore-minimal
+export IMAGE_NAME=kansei-server
 /tmp/packages.sh
 
 # tweak os-release
-sed -i '/^PRETTY_NAME/s/"$/ (uCore minimal)"/' /usr/lib/os-release
+sed -i '/^PRETTY_NAME/s/"$/ (Kansei Server)"/' /usr/lib/os-release
