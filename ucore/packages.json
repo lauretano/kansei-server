@@ -3,30 +3,35 @@
         "include": {
             "all": [],
             "kansei-server": [
+                "apcupsd",
                 "bootc",
                 "cockpit-networkmanager",
+                "cockpit-machines",
                 "cockpit-ostree",
+                "cockpit-pcp",
                 "cockpit-podman",
+                "cockpit-selinux",
+                "cockpit-storaged",
                 "cockpit-system",
+                "distrobox",
                 "firewalld",
+                "libvirt-client",
+                "libvirt-daemon-kvm",
+                "lm_sensors",
                 "pciutils",
+                "pcp-zeroconf",
                 "podman",
                 "podman-compose",
                 "tailscale",
                 "tmux",
+                "usbutils",
                 "vim",
-                "apcupsd",
-                "cockpit-pcp",
-                "cockpit-storaged"
+                "virt-install"
             ],
             "kansei-server-plus": [
                 "NetworkManager-wifi",
                 "atheros-firmware",
                 "brcmfmac-firmware",
-                "cockpit-pcp",
-                "cockpit-selinux",
-                "cockpit-storaged",
-                "distrobox",
                 "duperemove",
                 "hdparm",
                 "iwlegacy-firmware",
@@ -35,30 +40,19 @@
                 "mt7xxx-firmware",
                 "nfs-utils",
                 "nxpwireless-firmware",
-                "pciutils",
-                "pcp-zeroconf",
                 "rclone",
                 "realtek-firmware",
                 "samba",
                 "samba-usershares",
                 "snapraid",
                 "tiwilink-firmware",
-                "usbutils",
                 "xdg-dbus-proxy",
-                "xdg-user-dirs",
-                "cockpit-machines",
-                "libvirt-client",
-                "libvirt-daemon-kvm",
-                "virt-install",
-                "apcupsd",
-                "lm_sensors"
+                "xdg-user-dirs"
             ]
         },
         "exclude": {
             "all": [],
-            "kansei-server": [
-                "cockpit-selinux"
-            ],
+            "kansei-server": [],
             "kansei-server-plus": [
                 "nfs-utils-coreos"
             ]
