@@ -10,7 +10,6 @@
                 "cockpit-ostree",
                 "cockpit-pcp",
                 "cockpit-podman",
-                "cockpit-selinux",
                 "cockpit-storaged",
                 "cockpit-system",
                 "distrobox",
@@ -53,7 +52,9 @@
         },
         "exclude": {
             "all": [],
-            "kansei-server": [],
+            "kansei-server": [
+                "cockpit-selinux"
+            ],
             "kansei-server-plus": [
                 "nfs-utils-coreos"
             ]
