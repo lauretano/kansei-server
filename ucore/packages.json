@@ -15,8 +15,6 @@
                 "cockpit-system",
                 "distrobox",
                 "firewalld",
-                "libvirt-client",
-                "libvirt-daemon-kvm",
                 "lm_sensors",
                 "pciutils",
                 "pcp-zeroconf",
@@ -25,8 +23,8 @@
                 "tailscale",
                 "tmux",
                 "usbutils",
-                "vim",
-                "virt-install"
+                "vim"
+
             ],
             "kansei-server-plus": [
                 "NetworkManager-wifi",
@@ -37,6 +35,8 @@
                 "iwlegacy-firmware",
                 "iwlwifi-dvm-firmware",
                 "iwlwifi-mvm-firmware",
+                "libvirt-client",
+                "libvirt-daemon-kvm",
                 "mt7xxx-firmware",
                 "nfs-utils",
                 "nxpwireless-firmware",
@@ -47,7 +47,8 @@
                 "snapraid",
                 "tiwilink-firmware",
                 "xdg-dbus-proxy",
-                "xdg-user-dirs"
+                "xdg-user-dirs",
+                "virt-install"
             ]
         },
         "exclude": {
