@@ -3,10 +3,22 @@
 [![stable](https://github.com/lauretano/kansei-server/actions/workflows/build-stable.yml/badge.svg)](https://github.com/lauretano/kansei-server/actions/workflows/build-stable.yml)
 [![testing](https://github.com/lauretano/kansei-server/actions/workflows/build-testing.yml/badge.svg)](https://github.com/lauretano/kansei-server/actions/workflows/build-testing.yml)
 
-Kansei Server, a fork of uCore, is an opinionated, custom OCI image of Fedora CoreOS, built off the Universal Blue uCore base daily. The idea is to make the "ideal" home hosting container server for nerds. 
+Kansei Server is a personal custom OCI image of Fedora CoreOS, built off the Universal Blue uCore base daily. This started from a desire to turn an old gaming rig with an nvidia GPU into a proper home application, web hosting, and virtualization server, allowing much better performance for apps struggling on various pi4 docker hosts, an old NAS, etc. Since I've been really into the Universal Blue desktop OCI images of Fedora Atomic (Bluefin and Bazzite) lately, I decided to go with the very similar since they're cousins Fedora CoreOS, again using a Universal Blue base image (uCore). This has become my "server image" that I'll toss on any x86_64 host I feel like using as a headless compute resource at home (it's on an iMac in addition to the gaming rig).
+
+a partial selection of the containers I run on the old gaming rig:
+- unifi network app: because it runs better here than on my resource-constrained unifi router
+- qbittorrent w/ web interface for seeding open source torrents, my contribution to fellow distro-hoppers
+- plenty of nginx containers doing a lil personal web hosting of a couple small fediverse communities (gigabit upload and full IPv6 down to the docker container allows for lots of fun).
+- nginx reverse proxy, cert management
+- jellyfin: for presenting local media content to appletvs in the home. 
+- retro computing: an nginx container that presents moderm web pages as images for browsing the internet on computers that are too old for encryption.
+- mainsail (3d printer farm web interface)
+- homeassistant / mediaassistant
+- admin stuff: portainer, cockpit-ws
+- always looking for more digital clutter so if you have any useful suggestions let me know <3
 
 ## Important Note
-At this time, this is a super pre-alpha state and only a couple images are being built specific to test hardware platforms in use currently. More variants and some reorganization to come. 
+At this time, this is a super pre-alpha state despite the fact I run my home DNS server on it (my partner is a saint). Only a couple images are being built specific to test hardware platforms in use currently. If you see any value in this image and would like more variants let me know. 
 
 ## Table of Contents <!-- omit in toc -->
 
