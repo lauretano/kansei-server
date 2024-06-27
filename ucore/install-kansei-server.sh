@@ -48,7 +48,7 @@ if [[ "-nvidia" == "${NVIDIA_TAG}" ]]; then
 
     rpm-ostree install \
         /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
-        nvidia-driver-cuda \
+        #nvidia-driver-cuda \
         nvidia-container-toolkit \
         nvidia-docker2
 fi
