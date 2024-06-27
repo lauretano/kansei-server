@@ -39,7 +39,7 @@ fi
 ## CONDITIONAL: install NVIDIA
 if [[ "-nvidia" == "${NVIDIA_TAG}" ]]; then
     # repo for nvidia rpms
-    #curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
+    curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
 
     curl -L https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo -o   /etc/yum.repos.d/nvidia-container-toolkit.repo
 
@@ -48,7 +48,7 @@ if [[ "-nvidia" == "${NVIDIA_TAG}" ]]; then
 
     rpm-ostree install \
         /tmp/rpms/nvidia/kmod-nvidia-*.rpm \
-        #nvidia-driver-cuda \
+        nvidia-driver-cuda \
         nvidia-container-toolkit \
         nvidia-docker2
 fi
