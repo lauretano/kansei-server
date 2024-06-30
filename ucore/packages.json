@@ -5,6 +5,7 @@
             "kansei-server": [
                 "apcupsd",
                 "bootc",
+                "bootupd",
                 "cockpit-networkmanager",
                 "cockpit-machines",
                 "cockpit-ostree",
