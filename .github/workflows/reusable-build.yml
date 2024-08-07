@@ -282,6 +282,7 @@ jobs:
         exclude:
           - zfs_tag: "-zfs"
           - dockerce_tag: ""
+          - nvidia_tag: "-nvidia"
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
