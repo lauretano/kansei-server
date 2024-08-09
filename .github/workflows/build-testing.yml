@@ -3,7 +3,7 @@ on:
   pull_request:
   merge_group:
   schedule:
-    - cron: '45 23 * * 4' # 11:45PM UTC Daily (approx 1.75 hours after coreos images publish)
+    - cron: '45 9 * * 5' # build at 9:45 UTC Friday so images are fresh Friday morning Eastern time for review and install same-day (coreos images publish around 22:00UTC)
   workflow_dispatch:
 
 jobs:
