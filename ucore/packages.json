@@ -44,7 +44,6 @@
                 "libvirt-client",
                 "libvirt-daemon-kvm",
                 "mt7xxx-firmware",
-                "nfs-utils",
                 "nxpwireless-firmware",
                 "rclone",
                 "realtek-firmware",
