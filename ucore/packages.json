@@ -29,8 +29,7 @@
                 "tailscale",
                 "tmux",
                 "usbutils",
-                "vim",
-
+                "vim"
             ],
             "kansei-server-plus": [
                 "duperemove",
