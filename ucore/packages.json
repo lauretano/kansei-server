@@ -18,7 +18,7 @@
                 "htop",
                 "firewalld",
                 "lm_sensors",
-                "nfs_utils"
+                "nfs_utils",
                 "pciutils",
                 "pcp-zeroconf",
                 "podman",
