@@ -20,6 +20,7 @@
                 "htop",
                 "firewalld",
                 "lm_sensors",
+                "locate",
                 "nfs-utils",
                 "pciutils",
                 "pcp-zeroconf",
@@ -29,7 +30,7 @@
                 "tailscale",
                 "tmux",
                 "usbutils",
-                "vim"
+                "vim" 
             ],
             "kansei-server-plus": [
                 "duperemove",
