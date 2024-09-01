@@ -280,7 +280,6 @@ jobs:
           #- image_suffix: "-jinba-ittai"
           #  description: ~~ h o r s e and r i d e r as o n e ~~ this is my personal spin, likely a weird mix of packages
         exclude:
-          - image_suffix: "-plus"
           - zfs_tag: "-zfs"
           - dockerce_tag: ""
           - nvidia_tag: "-nvidia"
