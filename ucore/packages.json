@@ -18,10 +18,12 @@
                 "cockpit-system",
                 "distrobox",
                 "htop",
+                "fastfetch",
                 "firewalld",
                 "lm_sensors",
                 "locate",
                 "nfs-utils",
+                "p7zip",
                 "pciutils",
                 "pcp-zeroconf",
                 "podman",
@@ -29,12 +31,12 @@
                 "s-tui",
                 "tailscale",
                 "tmux",
+                "unzip",
                 "usbutils",
-                "vim" 
+                "vim"
             ],
             "kansei-server-plus": [
                 "duperemove",
-                "fastfetch",
                 "hdparm",
                 "libvirt-client",
                 "libvirt-daemon-kvm",
