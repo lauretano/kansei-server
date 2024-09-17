@@ -1,0 +1,14 @@
+name: next
+on:
+  pull_request:
+  merge_group:
+  schedule:
+    - cron: '30 9 * * 5' # build at 9:45 UTC Friday so images are fresh Friday morning Eastern time for review and install same-day (coreos images publish around 22:00UTC)
+  workflow_dispatch:
+
+jobs:
+  build-testing:
+    uses: ./.github/workflows/reusable-build.yml
+    secrets: inherit
+    with:
+      coreos_version: next
