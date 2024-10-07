@@ -8,7 +8,7 @@ RELEASE="$(rpm -E %fedora)"
 #### PREPARE
 # enable testing repos if not enabled on testing stream
 if [[ "testing" == "${COREOS_VERSION}" ]]; then
-for REPO in $(ls /etc/yum.repos.d/fedora-updates-testing{,-modular}.repo); do
+for REPO in $(ls /etc/yum.repos.d/fedora-updates-testing.repo); do
   if [[ "$(grep enabled=1 ${REPO} > /dev/null; echo $?)" == "1" ]]; then
     echo "enabling $REPO" &&
     sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' ${REPO}
