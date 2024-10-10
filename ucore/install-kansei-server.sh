@@ -21,6 +21,8 @@ curl -L https://copr.fedorainfracloud.org/coprs/ublue-os/ucore/repo/fedora/ublue
 
 # add the copr we use for topgrade because this is a home server and i like the orchestration
 curl -L https://copr.fedorainfracloud.org/coprs/shdwchn10/AllTheTools/repo/fedora-{RELEASE}/shdwchn10-AllTheTools-fedora-{RELEASE}.repo
+rpm-ostree install topgrade
+
 # always disable cisco-open264 repo
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-cisco-openh264.repo
 
