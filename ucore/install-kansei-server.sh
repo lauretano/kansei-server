@@ -72,4 +72,4 @@ export IMAGE_NAME=kansei-server
 /tmp/packages.sh
 
 # tweak os-release
-sed -i '/^PRETTY_NAME/s/"$/ (Kansei Server)"/' /usr/lib/os-release
+sed -i '/^PRETTY_NAME/s/"$/ (Fedora CoreOS Kansei)"/' /usr/lib/os-release

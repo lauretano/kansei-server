@@ -11,7 +11,7 @@
                 "cockpit-networkmanager",
                 "cockpit-machines",
                 "cockpit-ostree",
-                "cockpit-pcp",
+                "cockpit-bridge",
                 "cockpit-podman",
                 "cockpit-selinux",
                 "cockpit-storaged",

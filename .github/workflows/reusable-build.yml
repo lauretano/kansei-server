@@ -12,7 +12,7 @@ env:
 jobs:
   workflow_info:
     name: Get Workflow Info
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       pr_prefix: ${{ steps.pr_prefix.outputs.pr_prefix }}
     steps:
@@ -32,7 +32,7 @@ jobs:
 
   stream_info:
     name: Get Stream Info
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       linux: ${{ fromJSON(steps.fetch.outputs.outputs).linux }}
       version: ${{ fromJSON(steps.fetch.outputs.outputs).version }}
@@ -68,8 +68,9 @@ jobs:
 
   build_fcos:
     name: fedora-coreos
-    runs-on: ubuntu-22.04
-    if: ${{ false }} #always() && !cancelled()
+    runs-on: ubuntu-24.04
+    #if: ${{ false }}
+    if: always() && !cancelled()
     needs: [workflow_info, stream_info]
     permissions:
       contents: read
@@ -246,7 +247,7 @@ jobs:
 
   build_kansei-server:
     name: kansei-server
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     if: always() && !cancelled()
     needs: [workflow_info, stream_info]
     permissions:
