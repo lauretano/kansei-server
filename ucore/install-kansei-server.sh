@@ -58,7 +58,7 @@ fi
 ## CONDITIONAL: install DOCKER-CE
 if [[ "-dockerce" == "${DOCKERCE_TAG}" ]]; then
   curl --output-dir "/etc/yum.repos.d" --remote-name https://download.docker.com/linux/fedora/docker-ce.repo
-  rpm-ostree override remove moby-engine containerd runc --install docker-ce
+  rpm-ostree override remove moby-engine containerd runc docker-cli --install docker-ce
 fi
 
 
