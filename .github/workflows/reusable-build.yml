@@ -262,7 +262,7 @@ jobs:
   check:
     name: Check all successful
     runs-on: ubuntu-latest
-    needs: [build_fcos, build_kansei-server]
+    needs: [build_kansei-server]
     steps:
       - name: Exit
         shell: bash
